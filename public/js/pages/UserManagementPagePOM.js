@@ -69,8 +69,8 @@ export class UserManagemantPOM {
                 rowTr.appendChild(cellLastName);
                 var cellButtons = document.createElement("td");
                 cellButtons.innerHTML = `
-                <button type="button" class="btn btn-success btn-edit">Edit</button>
-                <button type="button" class="btn btn-danger btn-delete">Delete</button>
+                <button id="${user.userId}TableItemEditButton" type="button" class="btn btn-success btn-edit">Edit</button>
+                <button id="${user.userId}TableItemDeleteButton" type="button" class="btn btn-danger btn-delete">Delete</button>
             `;
                 rowTr.appendChild(cellButtons);
                 tableUsersBody.appendChild(rowTr);
