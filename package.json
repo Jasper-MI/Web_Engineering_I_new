@@ -1,0 +1,27 @@
+{
+  "name": "web_engineering_i",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jasper-MI/Web_Engineering_I.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jasper-MI/Web_Engineering_I/issues"
+  },
+  "homepage": "https://github.com/Jasper-MI/Web_Engineering_I#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "typescript": "^5.8.3"
+  }
+}

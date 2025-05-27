@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starting Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+</head>
+
+<body id="UserManagementPage">
+
+  <!-- Navigation Bar -->
+  <!-- Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <nav id="TopMenu" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="LinkRoot" class="navbar-brand" href="#">WE-1 SPA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a id="LinkImpressum" class="nav-link active" aria-current="page" href="#">Impressum</a>
+          </li>
+          <li class="nav-item">
+            <a id="LinkUserManagement" class="nav-link active" aria-current="page"
+              href="#">User-Management</a>
+          </li>
+        </ul>
+        <a id="LinkLogout" class="nav-link active" aria-current="page" href="#">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1>User-Management</h1>
+    <button id="ButtonAddUser" type="button" class="btn btn-outline-success">Add User</button>
+
+    <!-- Table -->
+    <!-- Quelle: https://getbootstrap.com/docs/5.0/content/tables/ -->
+    <table id="TableUsers" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">User-ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="TableUsersBody">
+        <tr>
+          <!-- Muster Eintrag
+            <td id="adminTableItemUsername">admin</td>
+            <td id="adminTableItemFirstName">Udo</td>
+            <td id="adminTableItemLastName">Müller</td>
+            <td>
+          -->
+            <button id="adminTableItemEditButton" type="button" class="btn btn-success">Edit</button>
+            <button id="adminTableItemDeleteButton" type="button" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

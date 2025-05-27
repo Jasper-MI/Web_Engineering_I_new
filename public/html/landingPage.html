@@ -1,0 +1,90 @@
+<body id="LandingPage">
+
+
+    <!-- Navigation Bar -->
+    <!-- Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+    <nav id="TopMenu" class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a id="LinkRoot" class="navbar-brand" href="./index.html">WE-1 SPA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a id="LinkImpressum" class="nav-link active" aria-current="page" href="#">Impressum</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <!-- Quelle: https://getbootstrap.com/docs/4.3/components/forms/ -->
+    <form id="FormLogin" style="padding: 2%;
+        margin: 0 auto;
+        margin-top: 5%;
+        padding: 20px 15px 10px 15px;
+        border: 1px solid rgb(192, 192, 192);
+        border-radius: 10px;
+        max-width: 300px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <h2 class="loginFormGroup">Login</h1>
+            <div class="form-group loginFormGroup">
+                <label for="exampleInputEmail1">User Name</label>
+                <input id="FormLoginUsername" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Enter User Name">
+            </div>
+            <div class="form-group loginFormGroup">
+                <label for="exampleInputPassword1">Password</label>
+                <input id="FormLoginPassword" type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+            </div>
+            <button id="ButtonLoginUser" type="submit" class="btn btn-primary" style="
+        margin-top: 5px;
+        width: 100%;">Login</button>
+            <p class="loginFormGroup">Not a member? <a id="LinkShowSignupDialog" href="#">Signup</a></p>
+    </form>
+
+
+    <!-- Signup Form -->
+    <!-- Quelle: https://getbootstrap.com/docs/4.3/components/forms/ -->
+    <form id="FormSignup" style="padding: 2%;
+        margin: 0 auto;
+        margin-top: 5%;
+        padding: 20px 15px 10px 15px;
+        border: 1px solid rgb(192, 192, 192);
+        border-radius: 10px;
+        max-width: 300px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: none;">
+        <h2 class="loginFormGroup">Signup</h1>
+
+            <div class="form-group loginFormGroup">
+                <label for="exampleInputEmail1">User Name</label>
+                <input id="FormSignupUsername" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="User Name">
+            </div>
+            <div class="form-group loginFormGroup">
+                <label for="exampleInputEmail1">First Name</label>
+                <input id="FormSignupFirstName" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="First Name">
+            </div>
+            <div class="form-group loginFormGroup">
+                <label for="exampleInputEmail1">Last Name</label>
+                <input id="FormSignupLastName" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Last Name">
+            </div>
+            <div class="form-group loginFormGroup">
+                <label for="exampleInputPassword1">Password</label>
+                <input id="FormSignupPassword" type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+            </div>
+            <button id="ButtonSignupUser" type="submit" class="btn btn-primary" style="
+            margin-top: 5px;
+            width: 100%;">Signup</button>
+            <p>Already a member? <a id="LinkShowLoginDialog" href="#">Login</a></p>
+    </form>
+</body>

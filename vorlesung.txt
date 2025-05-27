@@ -1,0 +1,12 @@
+Meilenstein 3
+
+- Klassen aufräumen -> z.B. AbstractPOM anlegen
+- UserManagement Tabelle mit Nutzern füllen
+
+
+Übung 2
+
+Meilenstein 1
+
+- Request -> GET "http://Dokument oder Seite" -> Zugriff über den Rest-Server auf die Datenbank
+- Die URL bei der Request ("http://Dokument oder Seite") nennt man Endpoint

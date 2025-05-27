@@ -1,0 +1,41 @@
+<body id="StartPage">
+
+  <!-- Navigation Bar -->
+  <!-- Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <nav id="TopMenu" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="LinkRoot" class="navbar-brand" href="#">WE-1 SPA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a id="LinkImpressum" class="nav-link active" aria-current="page" href="">Impressum</a>
+          </li>
+          <li class="nav-item">
+            <a id="LinkUserManagement" class="nav-link active" aria-current="page"
+              href="#">User-Management</a>
+          </li>
+        </ul>
+        <a id="LinkLogout" class="nav-link active" aria-current="page" href="#">Logout</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Starting Page Content -->
+  <div class="container mt-5">
+    <h1>StartPage</h1>
+    <p id="StartPageWelcomeText" >
+      This is the Start Page. If the application could be loaded correctly, you should see more than 0 users. <br>
+      Do you want to edet the user data?
+      <a id="StartPageLinkUserManagement" href="#">Edit User Data</a>
+    </p>
+    <!--  Quelle: https://getbootstrap.com/docs/5.0/components/alerts/ -->
+    <div class="alert alert-success" role="alert">
+      Hello Admin. We currently have <span id="UserCount">1</span> user.
+    </div>
+  </div>
+
+</body>

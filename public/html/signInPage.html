@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <!-- Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <nav id="TopMenu" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="LinkRoot" class="navbar-brand" href="../index.html">WE-1 SPA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a id="LinkImpressum" class="nav-link active" aria-current="page" href="./impressumLogedOut.html">Impressum</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Login Form -->
+  <!-- Quelle: https://getbootstrap.com/docs/4.3/components/forms/ -->
+  <form id="FormSignup" style="padding: 2%;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 20px 15px 10px 15px;
+  border: 1px solid rgb(192, 192, 192);
+  border-radius: 10px;
+  max-width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+      <h2 class="loginFormGroup">Signup</h1>
+
+    <div class="form-group loginFormGroup" >
+      <label for="exampleInputEmail1">User Name</label>
+      <input id="FormSignupUsername" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        placeholder="User Name">
+    </div>
+    <div class="form-group loginFormGroup">
+      <label for="exampleInputPassword1">Password</label>
+      <input id="FormSignupPassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <a id="ButtonSignupUser" class="btn btn-primary" href="../index.html" role="button"
+    style="
+    margin-top: 5px;
+    width: 100%;"
+    >Signup</a>
+    <p>Already a member? <a id="LinkShowLoginDialog" href="../index.html">Login</a></p>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
