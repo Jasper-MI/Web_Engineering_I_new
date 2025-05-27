@@ -27,8 +27,7 @@
             <a id="LinkImpressum" class="nav-link active" aria-current="page" href="#">Impressum</a>
           </li>
           <li class="nav-item">
-            <a id="LinkUserManagement" class="nav-link active" aria-current="page"
-              href="#">User-Management</a>
+            <a id="LinkUserManagement" class="nav-link active" aria-current="page" href="#">User-Management</a>
           </li>
         </ul>
         <a id="LinkLogout" class="nav-link active" aria-current="page" href="#">Logout</a>
@@ -36,9 +35,76 @@
     </div>
   </nav>
 
+  <!-- https://getbootstrap.com/docs/4.0/components/modal/ -->
   <div class="container mt-5">
     <h1>User-Management</h1>
-    <button id="ButtonAddUser" type="button" class="btn btn-outline-success">Add User</button>
+
+
+    <!-- Quelle: https://getbootstrap.com/docs/5.3/components/modal/ -->
+    <!-- Button trigger modal -->
+    <button id="ButtonAddUser" type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
+      Add User
+    </button>
+
+    <!-- Modal -->
+    <div id="FormAddUser" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="AddUserForm" style="padding: 2%;
+              margin: 0 auto;
+              margin-top: 5%;
+              padding: 20px 15px 10px 15px;
+              border: 1px solid rgb(192, 192, 192);
+              border-radius: 10px;
+              max-width: 300px;
+              box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+              ">
+              <h2 class="loginFormGroup">Signup</h1>
+
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputEmail1">User Name</label>
+                  <input id="FormAddUserUsername" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="User Name">
+                </div>
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputEmail1">First Name</label>
+                  <input id="FormAddUserFirstName" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="First Name">
+                </div>
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input id="FormAddUserLastName" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Last Name">
+                </div>
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input id="FormAddUserPassword" type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+                </div>
+                <button id="ButtonSignupUser" type="submit" class="btn btn-primary" style="
+                  margin-top: 5px;
+                  width: 100%;">
+                  Signup
+                </button>
+            
+            </form>
+
+
+          </div>
+          <div class="modal-footer">
+            <button id="FormAddUserCancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="FormAddUserSubmit" type="button" class="btn btn-primary">Add User</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Table -->
     <!-- Quelle: https://getbootstrap.com/docs/5.0/content/tables/ -->
