@@ -1,7 +1,11 @@
-TODO Meilenstein II
+ Meilenstein II
 
 [x] Navbar so anpassen, dass mehr Elemente angezeigt werden, wenn man eingeloggt is
 [x] Signup und Login Forms leer machen, wenn man auf "login" oder "signup" gedrückt hat
 [x] Standartuser "admin" anlegen
 [x] Toast-Message einbauen
-[ ] AbstractPOM anlegen
+[x] AbstractPOM anlegen
+
+TODO Übung 2 Meilenstein I
+
+[ ] 

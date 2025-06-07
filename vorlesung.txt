@@ -10,3 +10,7 @@ Meilenstein 1
 
 - Request -> GET "http://Dokument oder Seite" -> Zugriff über den Rest-Server auf die Datenbank
 - Die URL bei der Request ("http://Dokument oder Seite") nennt man Endpoint
+
+- basic authentification:
+    - String aus Header nehmen -> in zwei Teile splitten -> autob; encoden  -> prüfen, ob richtig
+- neue User hinzufügen -> app.post(...)
