@@ -15,26 +15,6 @@ import { StartingPagePOM } from "./StartPagePOM.js";
 export class UserManagemantPOM {
     init() {
         return __awaiter(this, void 0, void 0, function* () {
-            /*
-            const appContent = document.getElementById('appContent') as HTMLElement;
-            try {
-                const response = await fetch('./html/userManagement.html',);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-    
-                const htmlContent = await response.text();
-    
-                if (appContent) {
-                    appContent.innerHTML = '';
-                    appContent.innerHTML = htmlContent;
-                } else {
-                    console.error(`Container with id=appContent not found.`);
-                }
-            } catch (error) {
-                console.error('Failed to load Impressum:', error);
-            }
-            */
             // show HTML
             yield AbstractPOM.showPage('./html/userManagement.html');
             // DOM-Elemente 
@@ -44,36 +24,44 @@ export class UserManagemantPOM {
             const logoutButton = document.getElementById('LinkLogout');
             const tableUsersBody = document.getElementById('TableUsersBody');
             // show Table with registered users
-            const applicationManager = ApplicationManager.getInstance();
-            const usersMap = applicationManager.getRegisteredUsers();
-            for (const user of usersMap.values()) {
-                var rowTr = document.createElement("tr");
-                var cellUsername = document.createElement("td");
-                var cellUsernameText = document.createTextNode(user.userId);
-                cellUsername.appendChild(cellUsernameText);
-                cellUsername.setAttribute('id', `${user.userId}TableItemUsername`);
-                rowTr.appendChild(cellUsername);
-                var cellFirstName = document.createElement("td");
-                if (user.firstName) {
-                    var cellFirstNameText = document.createTextNode(user.firstName);
-                    cellFirstName.appendChild(cellFirstNameText);
-                }
-                cellFirstName.setAttribute('id', `${user.userId}TableItemFirstName`);
-                rowTr.appendChild(cellFirstName);
-                var cellLastName = document.createElement("td");
-                if (user.lastName) {
-                    var cellLastNameText = document.createTextNode(user.lastName);
-                    cellLastName.appendChild(cellLastNameText);
-                }
-                cellLastName.setAttribute('id', `${user.userId}TableItemLastName`);
-                rowTr.appendChild(cellLastName);
-                var cellButtons = document.createElement("td");
-                cellButtons.innerHTML = `
-                <button id="${user.userId}TableItemEditButton" type="button" class="btn btn-success btn-edit">Edit</button>
-                <button id="${user.userId}TableItemDeleteButton" type="button" class="btn btn-danger btn-delete">Delete</button>
-            `;
-                rowTr.appendChild(cellButtons);
-                tableUsersBody.appendChild(rowTr);
+            const response = yield fetch('http://localhost:80/api/users', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (response.ok) {
+                var users = yield response.json();
+                users.forEach((user) => {
+                    var rowTr = document.createElement("tr");
+                    var cellUsername = document.createElement("td");
+                    var cellUsernameText = document.createTextNode(user.userID);
+                    cellUsername.appendChild(cellUsernameText);
+                    cellUsername.setAttribute('id', `${user.userID}TableItemUsername`);
+                    rowTr.appendChild(cellUsername);
+                    var cellFirstName = document.createElement("td");
+                    if (user.firstName) {
+                        var cellFirstNameText = document.createTextNode(user.firstName);
+                        cellFirstName.appendChild(cellFirstNameText);
+                    }
+                    cellFirstName.setAttribute('id', `${user.userID}TableItemFirstName`);
+                    rowTr.appendChild(cellFirstName);
+                    var cellLastName = document.createElement("td");
+                    if (user.lastName) {
+                        var cellLastNameText = document.createTextNode(user.lastName);
+                        cellLastName.appendChild(cellLastNameText);
+                    }
+                    cellLastName.setAttribute('id', `${user.userID}TableItemLastName`);
+                    rowTr.appendChild(cellLastName);
+                    var cellButtons = document.createElement("td");
+                    cellButtons.innerHTML = `
+                    <button id="${user.userID}TableItemEditButton" type="button" class="btn btn-success btn-edit">Edit</button>
+                    <button id="${user.userID}TableItemDeleteButton" type="button" class="btn btn-danger btn-delete">Delete</button>
+                `;
+                    rowTr.appendChild(cellButtons);
+                    tableUsersBody.appendChild(rowTr);
+                });
+            }
+            else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
             // Event Listener hinzufügen
             linkBackToStartingPage === null || linkBackToStartingPage === void 0 ? void 0 : linkBackToStartingPage.addEventListener('click', (event) => {

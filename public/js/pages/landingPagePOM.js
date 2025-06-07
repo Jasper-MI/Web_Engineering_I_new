@@ -74,13 +74,22 @@ export class LandingPagePOM {
             formSignup.addEventListener('submit', (event) => __awaiter(this, void 0, void 0, function* () {
                 event.preventDefault();
                 console.log('Signup Button pressed');
-                const userNameInput = document.getElementById('FormSignupUsername').value;
+                const userIdInput = document.getElementById('FormSignupUsername').value;
                 const firstNameInput = document.getElementById('FormSignupFirstName').value;
                 const lastNameInput = document.getElementById('FormSignupLastName').value;
                 const passwordInput = document.getElementById('FormSignupPassword').value;
                 const applicationManager = ApplicationManager.getInstance();
-                var checkUser = applicationManager.signupUser(userNameInput, firstNameInput, lastNameInput, passwordInput);
-                if (!checkUser) {
+                const response = yield fetch('http://localhost:80/api/users', {
+                    method: 'POST',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify({
+                        userID: userIdInput,
+                        password: passwordInput,
+                        firstName: firstNameInput,
+                        lastName: lastNameInput
+                    })
+                });
+                if (!response.ok) {
                     applicationManager.showToast("User already exists", "rgb(197, 71, 71)");
                     return null;
                 }
@@ -100,9 +109,13 @@ export class LandingPagePOM {
                 const userNameInput = document.getElementById('FormLoginUsername').value;
                 const passwordInput = document.getElementById('FormLoginPassword').value;
                 const applicationManager = ApplicationManager.getInstance();
-                // Log the user in --> Check if the name and password are correct
-                var checkUser = applicationManager.login(userNameInput, passwordInput);
-                if (!checkUser) {
+                const response = yield fetch('http://localhost:80/api/login', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(userNameInput + ':' + passwordInput)
+                    }
+                });
+                if (!response.ok) {
                     console.log("Wrong username or password");
                     applicationManager.showToast("Wrong username or password", "rgb(197, 71, 71)");
                     return null;

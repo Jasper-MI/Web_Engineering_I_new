@@ -81,7 +81,7 @@ export class LandingPagePOM {
             event.preventDefault();
             console.log('Signup Button pressed')
 
-            const userNameInput = (document.getElementById('FormSignupUsername') as HTMLInputElement).value;
+            const userIdInput = (document.getElementById('FormSignupUsername') as HTMLInputElement).value;
             const firstNameInput = (document.getElementById('FormSignupFirstName') as HTMLInputElement).value;
             const lastNameInput = (document.getElementById('FormSignupLastName') as HTMLInputElement).value;
             const passwordInput = (document.getElementById('FormSignupPassword') as HTMLInputElement).value;
@@ -89,12 +89,24 @@ export class LandingPagePOM {
 
 
             const applicationManager = ApplicationManager.getInstance();
-            var checkUser = applicationManager.signupUser(userNameInput, firstNameInput, lastNameInput, passwordInput);
 
-            if (!checkUser) { 
+            const response = await fetch('http://localhost:80/api/users', {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    userID: userIdInput,
+                    password: passwordInput,
+                    firstName: firstNameInput,
+                    lastName: lastNameInput
+
+                })
+            });
+
+            if (!response.ok) { 
                 applicationManager.showToast("User already exists", "rgb(197, 71, 71)")
                 return null
             }
+
 
 
             formSignup?.reset(); // clear form after submit
@@ -119,19 +131,23 @@ export class LandingPagePOM {
             const passwordInput = (document.getElementById('FormLoginPassword') as HTMLInputElement).value;
 
             const applicationManager = ApplicationManager.getInstance();
+            
+            const response = await fetch('http://localhost:80/api/login', {
+                method: 'GET',
+                headers: {
+                'Authorization': 'Basic ' + btoa(userNameInput + ':' + passwordInput)
+                }
+            });
 
-            // Log the user in --> Check if the name and password are correct
-            var checkUser = applicationManager.login(userNameInput, passwordInput);
-
-            if (!checkUser) {
-                console.log("Wrong username or password")
-                applicationManager.showToast("Wrong username or password", "rgb(197, 71, 71)")
-                return null
+            if(!response.ok) {
+                console.log("Wrong username or password");
+                applicationManager.showToast("Wrong username or password", "rgb(197, 71, 71)");
+                return null;
             }
-
-
+            
+            
             formLogin?.reset(); // clear form after submit
-
+            
             applicationManager.showToast("Successfully logged in", "rgb(72, 194, 72)") //call Methode to show toast message
 
             // Then show the starting page

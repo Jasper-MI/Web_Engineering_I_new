@@ -19,44 +19,52 @@ export class UserManagemantPOM {
         const tableUsersBody = document.getElementById('TableUsersBody') as HTMLTableElement;
 
         // show Table with registered users
-        const applicationManager = ApplicationManager.getInstance();
-        const usersMap = applicationManager.getRegisteredUsers();
+        const response = await fetch('http://localhost:80/api/users', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json'}
+        });
 
-        for(const user of usersMap.values()) {
-            var rowTr = document.createElement("tr");
-            
-            var cellUsername = document.createElement("td");
-            var cellUsernameText = document.createTextNode(user.userId);
-            cellUsername.appendChild(cellUsernameText);
-            cellUsername.setAttribute('id', `${user.userId}TableItemUsername`);
-            rowTr.appendChild(cellUsername);
-            
+        if(response.ok) {
+            var users = await response.json();
+            users.forEach((user: { userID: string; firstName: string; lastName: string; }) => {
+                var rowTr = document.createElement("tr");
+                
+                var cellUsername = document.createElement("td");
+                var cellUsernameText = document.createTextNode(user.userID);
+                cellUsername.appendChild(cellUsernameText);
+                cellUsername.setAttribute('id', `${user.userID}TableItemUsername`);
+                rowTr.appendChild(cellUsername);
+                
 
-            var cellFirstName = document.createElement("td");
-            if(user.firstName) {
-                var cellFirstNameText = document.createTextNode(user.firstName);
-                cellFirstName.appendChild(cellFirstNameText);
-            }
-            cellFirstName.setAttribute('id', `${user.userId}TableItemFirstName`);
-            rowTr.appendChild(cellFirstName);
+                var cellFirstName = document.createElement("td");
+                if(user.firstName) {
+                    var cellFirstNameText = document.createTextNode(user.firstName);
+                    cellFirstName.appendChild(cellFirstNameText);
+                }
+                cellFirstName.setAttribute('id', `${user.userID}TableItemFirstName`);
+                rowTr.appendChild(cellFirstName);
 
-            var cellLastName = document.createElement("td");
-            if(user.lastName) {
-            var cellLastNameText = document.createTextNode(user.lastName);
-                cellLastName.appendChild(cellLastNameText);
-            }
-            cellLastName.setAttribute('id', `${user.userId}TableItemLastName`);
-            rowTr.appendChild(cellLastName);
+                var cellLastName = document.createElement("td");
+                if(user.lastName) {
+                var cellLastNameText = document.createTextNode(user.lastName);
+                    cellLastName.appendChild(cellLastNameText);
+                }
+                cellLastName.setAttribute('id', `${user.userID}TableItemLastName`);
+                rowTr.appendChild(cellLastName);
 
-            var cellButtons = document.createElement("td");
-            cellButtons.innerHTML = `
-                <button id="${user.userId}TableItemEditButton" type="button" class="btn btn-success btn-edit">Edit</button>
-                <button id="${user.userId}TableItemDeleteButton" type="button" class="btn btn-danger btn-delete">Delete</button>
-            `;
-            rowTr.appendChild(cellButtons);
+                var cellButtons = document.createElement("td");
+                cellButtons.innerHTML = `
+                    <button id="${user.userID}TableItemEditButton" type="button" class="btn btn-success btn-edit">Edit</button>
+                    <button id="${user.userID}TableItemDeleteButton" type="button" class="btn btn-danger btn-delete">Delete</button>
+                `;
+                rowTr.appendChild(cellButtons);
 
-            tableUsersBody.appendChild(rowTr);
-        }
+                tableUsersBody.appendChild(rowTr);
+            });
+
+        } else  {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }  
         
 
         // Event Listener hinzufügen

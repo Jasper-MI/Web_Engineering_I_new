@@ -67,7 +67,7 @@ export class StartingPagePOM {
                 console.log("logoutButton pressed");
                 applicationManager.loadLandingPage();
             }));
-            userCount.innerHTML = applicationManager.getUserNumber();
+            userCount.innerHTML = yield applicationManager.getUserNumber();
             const currentUser = applicationManager.getCurrentUser();
             if (currentUser && currentUser.firstName) {
                 const alertElement = document.querySelector('.alert.alert-success');

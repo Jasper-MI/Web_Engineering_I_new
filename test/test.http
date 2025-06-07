@@ -1,0 +1,20 @@
+### ➕ Benutzer erstellen
+POST http://localhost:80/api/users
+Content-Type: application/json
+
+{
+    "userID": "max",
+    "password": "pass123",
+    "firstName": "Max",
+    "lastName": "Mustermann"
+}
+
+###
+
+GET http://localhost:80/api/users
+
+###
+
+DELETE http://localhost:80/api/users/max
+
+###

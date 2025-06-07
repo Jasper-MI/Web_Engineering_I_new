@@ -76,7 +76,7 @@ export class StartingPagePOM {
         });
 
 
-        userCount.innerHTML = applicationManager.getUserNumber();
+        userCount.innerHTML = await applicationManager.getUserNumber();
 
         const currentUser = applicationManager.getCurrentUser();
 

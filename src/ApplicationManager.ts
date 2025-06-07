@@ -9,7 +9,7 @@ export class ApplicationManager {
     private toastMessage: HTMLElement | null = null;
     private toastMessageText: HTMLElement | null = null;
 
-    private userMap: Map<string, User> = new Map<string, User>();
+    // private userMap: Map<string, User> = new Map<string, User>(); //not needed anymore
     //private userId: number = 0;
     private currentUser: User | null = null;
 
@@ -36,7 +36,16 @@ export class ApplicationManager {
 
         // standard admin user
         const adminUser = new User("admin", "Manfred" , "Mustermann" , "123");
-        this.userMap.set(adminUser.userId, adminUser);
+        const response = await fetch('http://localhost:80/api/users', {
+            method: 'POST',
+            headers: { 'Conttent-Type': 'application/json'},
+            body: JSON.stringify(adminUser)
+        });
+
+        if(response.ok) {
+            const data = await response.json();
+            console.log("Rest-Server registriert: ", data);
+        }
 
         await this.loadLandingPage();
 
@@ -62,47 +71,42 @@ export class ApplicationManager {
     
 
     // Methode --> Signup new user
-    signupUser (useridInput: string, firstNameInput: string, lastNameInput: string,  passwordInput: string) {
-
-        if (!useridInput || !passwordInput) {
-            console.log("Please fill in all fields");
-            return null;
-        }
-
+    /*
+    async signupUser (useridInput: string, firstNameInput: string, lastNameInput: string,  passwordInput: string) {
         
-        for (const user of this.userMap.values()) {
-            if (user.userId === useridInput) {
-                console.log("User already exists");
-                return null;
-            }
+        const newUser = { 
+            userID: useridInput, 
+            password: passwordInput, 
+            firstName: firstNameInput,
+            lastName: lastNameInput
+        };    
+
+        const response = await fetch('http://localhost:80/api/users', {
+            method: 'POST',
+            headers: { 'Conttent-Type': 'application/json'},
+            body: JSON.stringify(newUser)
+        });
+
+        if(response.ok) {
+            const data = await response.json();
+            console.log("Rest-Server registriert: ", data);
         }
         
-
-        const newUser: User = new User (
-            useridInput,
-            firstNameInput,
-            lastNameInput,
-            passwordInput
-        );
-        this.userMap.set(newUser.userId, newUser);
-        console.log("New user added");
-
-        console.log(this.userMap);
-        return newUser;
     }
+        */
     
 
     // Methode --> Login existing user 
-    login(useridInput: string, passwordInput: string): User | null { 
-        for( const user of this.userMap.values()) {
-            if (user.userId === useridInput && user.password === passwordInput) {
-                console.log("User logged in successfully"); 
-                this.currentUser = user;
-                return user;
-        }
+    /*
+    async login(useridInput: string, passwordInput: string) { 
+        const response = await fetch('http://localhost:80/api/login', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Basic' + btoa(useridInput + ':' + passwordInput)
+            }
+        });
     }
-    return null;
-}
+    */
 
     // Methode --> show toast message
     showToast(message: string, color: string) {
@@ -119,13 +123,26 @@ export class ApplicationManager {
         }
     }
 
-    public getUserNumber(): string {
-        return ApplicationManager.getInstance().userMap.size.toString();
+    public async getUserNumber(): Promise<string> {
+
+        const response = await fetch ('http://localhost:80/api/users', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json'}
+        });
+
+        if(response.ok) {
+            const data = await response.json();
+            return Object.keys(data).length.toString();
+        } else {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
     }
 
+    /*
     public getRegisteredUsers(): Map<string, User> {
         return this.userMap;
     }
+    */
 
 }
 

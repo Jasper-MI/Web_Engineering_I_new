@@ -14,7 +14,7 @@ export class ApplicationManager {
     constructor() {
         this.toastMessage = null;
         this.toastMessageText = null;
-        this.userMap = new Map();
+        // private userMap: Map<string, User> = new Map<string, User>(); //not needed anymore
         //private userId: number = 0;
         this.currentUser = null;
         console.log("ApplicationManager constructor aufgerufen");
@@ -35,7 +35,15 @@ export class ApplicationManager {
             this.toastMessageText = document.getElementById('toastMessageText');
             // standard admin user
             const adminUser = new User("admin", "Manfred", "Mustermann", "123");
-            this.userMap.set(adminUser.userId, adminUser);
+            const response = yield fetch('http://localhost:80/api/users', {
+                method: 'POST',
+                headers: { 'Conttent-Type': 'application/json' },
+                body: JSON.stringify(adminUser)
+            });
+            if (response.ok) {
+                const data = yield response.json();
+                console.log("Rest-Server registriert: ", data);
+            }
             yield this.loadLandingPage();
         });
     }
@@ -55,34 +63,40 @@ export class ApplicationManager {
         });
     }
     // Methode --> Signup new user
-    signupUser(useridInput, firstNameInput, lastNameInput, passwordInput) {
-        if (!useridInput || !passwordInput) {
-            console.log("Please fill in all fields");
-            return null;
+    /*
+    async signupUser (useridInput: string, firstNameInput: string, lastNameInput: string,  passwordInput: string) {
+        
+        const newUser = {
+            userID: useridInput,
+            password: passwordInput,
+            firstName: firstNameInput,
+            lastName: lastNameInput
+        };
+
+        const response = await fetch('http://localhost:80/api/users', {
+            method: 'POST',
+            headers: { 'Conttent-Type': 'application/json'},
+            body: JSON.stringify(newUser)
+        });
+
+        if(response.ok) {
+            const data = await response.json();
+            console.log("Rest-Server registriert: ", data);
         }
-        for (const user of this.userMap.values()) {
-            if (user.userId === useridInput) {
-                console.log("User already exists");
-                return null;
-            }
-        }
-        const newUser = new User(useridInput, firstNameInput, lastNameInput, passwordInput);
-        this.userMap.set(newUser.userId, newUser);
-        console.log("New user added");
-        console.log(this.userMap);
-        return newUser;
+        
     }
+        */
     // Methode --> Login existing user 
-    login(useridInput, passwordInput) {
-        for (const user of this.userMap.values()) {
-            if (user.userId === useridInput && user.password === passwordInput) {
-                console.log("User logged in successfully");
-                this.currentUser = user;
-                return user;
+    /*
+    async login(useridInput: string, passwordInput: string) {
+        const response = await fetch('http://localhost:80/api/login', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Basic' + btoa(useridInput + ':' + passwordInput)
             }
-        }
-        return null;
+        });
     }
+    */
     // Methode --> show toast message
     showToast(message, color) {
         if (this.toastMessage && this.toastMessageText) {
@@ -97,10 +111,19 @@ export class ApplicationManager {
         }
     }
     getUserNumber() {
-        return ApplicationManager.getInstance().userMap.size.toString();
-    }
-    getRegisteredUsers() {
-        return this.userMap;
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield fetch('http://localhost:80/api/users', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (response.ok) {
+                const data = yield response.json();
+                return Object.keys(data).length.toString();
+            }
+            else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+        });
     }
 }
 // User-Class //
