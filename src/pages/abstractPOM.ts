@@ -23,8 +23,6 @@ export class AbstractPOM {
             console.error("Failed to showPage with path: " + path);
         }
 
-
-        
     }
 
 

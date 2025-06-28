@@ -19,25 +19,6 @@ export class StartingPagePOM {
         return __awaiter(this, void 0, void 0, function* () {
             const appContent = document.getElementById(this.containerId);
             const applicationManager = ApplicationManager.getInstance(); // Instance of ApplicationManager to make method calls
-            /*
-            try {
-                const response = await fetch('./html/startingPage.html',);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-    
-                const htmlContent = await response.text();
-    
-                if (appContent) {
-                    appContent.innerHTML = '';
-                    appContent.innerHTML = htmlContent;
-                } else {
-                    console.error(`Container with id "${this.containerId}" not found.`);
-                }
-            } catch (error) {
-                console.error('Failed to load StartingPage:', error);
-            }
-            */
             // show HTML 
             yield AbstractPOM.showPage('./html/startingPage.html');
             // DOM-Elemente abrufen
@@ -64,8 +45,9 @@ export class StartingPagePOM {
             });
             // Logout button event listener
             logoutButton === null || logoutButton === void 0 ? void 0 : logoutButton.addEventListener('click', (event) => __awaiter(this, void 0, void 0, function* () {
+                event.preventDefault();
                 console.log("logoutButton pressed");
-                applicationManager.loadLandingPage();
+                applicationManager.logOut();
             }));
             userCount.innerHTML = yield applicationManager.getUserNumber();
             const currentUser = applicationManager.getCurrentUser();

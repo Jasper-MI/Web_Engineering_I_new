@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { LandingPagePOM } from "./pages/LandingPagePOM.js";
 import { StartingPagePOM } from "./pages/StartPagePOM.js";
-import { User } from "./domain/User.js";
 export class ApplicationManager {
     constructor() {
         this.toastMessage = null;
@@ -33,17 +32,20 @@ export class ApplicationManager {
             console.log("Application Manager initialized");
             this.toastMessage = document.getElementById('toastMessage');
             this.toastMessageText = document.getElementById('toastMessageText');
+            /*
             // standard admin user
-            const adminUser = new User("admin", "Manfred", "Mustermann", "123");
-            const response = yield fetch('http://localhost:80/api/users', {
+            const adminUser = new User("admin", "Manfred" , "Mustermann" , "123");
+            const response = await fetch('http://localhost:80/api/users', {
                 method: 'POST',
-                headers: { 'Conttent-Type': 'application/json' },
+                headers: { 'Conttent-Type': 'application/json'},
                 body: JSON.stringify(adminUser)
             });
-            if (response.ok) {
-                const data = yield response.json();
+    
+            if(response.ok) {
+                const data = await response.json();
                 console.log("Rest-Server registriert: ", data);
             }
+            */
             yield this.loadLandingPage();
         });
     }
@@ -124,6 +126,10 @@ export class ApplicationManager {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
         });
+    }
+    logOut() {
+        this.currentUser = null;
+        this.loadLandingPage();
     }
 }
 // User-Class //

@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Starting Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-
-</head>
-
-<body id="UserManagementPage">
+<div id="UserManagementPage">
 
   <!-- Navigation Bar -->
   <!-- Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
@@ -39,25 +27,25 @@
   <div class="container mt-5">
     <h1>User-Management</h1>
 
-
+    <!-- Add-User Modal -->
     <!-- Quelle: https://getbootstrap.com/docs/5.3/components/modal/ -->
     <!-- Button trigger modal -->
-    <button id="ButtonAddUser" type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+    <button id="ButtonAddUser" type="button" class="btn btn-primary" data-bs-toggle="modal"
       data-bs-target="#exampleModal">
       Add User
     </button>
 
     <!-- Modal -->
-    <div id="FormAddUser" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
 
-            <form id="AddUserForm" style="padding: 2%;
+            <form id="FormAddUser" style="padding: 2%;
               margin: 0 auto;
               margin-top: 5%;
               padding: 20px 15px 10px 15px;
@@ -88,23 +76,78 @@
                   <input id="FormAddUserPassword" type="password" class="form-control" id="exampleInputPassword1"
                     placeholder="Password">
                 </div>
-                <button id="ButtonSignupUser" type="submit" class="btn btn-primary" style="
-                  margin-top: 5px;
-                  width: 100%;">
-                  Signup
-                </button>
-            
+                <button id="FormAddUserSubmit" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save
+                  changes</button>
             </form>
-
 
           </div>
           <div class="modal-footer">
-            <button id="FormAddUserCancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button id="FormAddUserSubmit" type="button" class="btn btn-primary">Add User</button>
+            <button id="FormAddUserCancel" type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
+
+
+    <!-- Edit-User Modal -->
+    <!-- Quelle: https://getbootstrap.com/docs/5.3/components/modal/ -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalEditUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="FormEditUser" style="padding: 2%;
+              margin: 0 auto;
+              margin-top: 5%;
+              padding: 20px 15px 10px 15px;
+              border: 1px solid rgb(192, 192, 192);
+              border-radius: 10px;
+              max-width: 300px;
+              box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+              ">
+              <h2 class="loginFormGroup">Edit User</h1>
+                <!--
+                  <div class="form-group loginFormGroup">
+                    <label for="exampleInputEmail1">User Name</label>
+                    <input id="FormEditUserUsername" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="User Name">
+                  </div>
+                -->
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputEmail1">First Name</label>
+                  <input id="FormEditUserFirstName" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="First Name">
+                </div>
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input id="FormEditUserLastName" type="text" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Last Name">
+                </div>
+                <div class="form-group loginFormGroup">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input id="FormEditUserPassword" type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+                </div>
+                <button id="FormEditUserSubmit" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save
+                  changes</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button id="FormEditUserCancel" type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Table -->
     <!-- Quelle: https://getbootstrap.com/docs/5.0/content/tables/ -->
@@ -133,11 +176,8 @@
     </table>
   </div>
 
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
     </script>
-</body>
 
-</html>
+</div>

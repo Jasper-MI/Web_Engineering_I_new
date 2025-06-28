@@ -34,6 +34,7 @@ export class ApplicationManager {
         this.toastMessage = document.getElementById('toastMessage');
         this.toastMessageText = document.getElementById('toastMessageText')
 
+        /*
         // standard admin user
         const adminUser = new User("admin", "Manfred" , "Mustermann" , "123");
         const response = await fetch('http://localhost:80/api/users', {
@@ -46,6 +47,7 @@ export class ApplicationManager {
             const data = await response.json();
             console.log("Rest-Server registriert: ", data);
         }
+        */
 
         await this.loadLandingPage();
 
@@ -136,6 +138,11 @@ export class ApplicationManager {
         } else {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
+    }
+
+    public logOut(): void{
+        this.currentUser = null;
+        this.loadLandingPage();
     }
 
     /*
