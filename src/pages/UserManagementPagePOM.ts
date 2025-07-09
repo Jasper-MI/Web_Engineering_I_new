@@ -30,7 +30,8 @@ export class UserManagemantPOM {
 
         if (response.ok) {
             var users = await response.json();
-            users.forEach((user: { userID: string; firstName: string; lastName: string; }) => {
+            // console.log(users);
+            users.forEach((user: { userID: string; firstName: string; lastName: string; password: string }) => {
                 var rowTr = document.createElement("tr");
 
                 var cellUsername = document.createElement("td");
@@ -79,9 +80,10 @@ export class UserManagemantPOM {
                     currentEditUserId = user.userID;
                     console.log('Current User: ' + user.userID);
 
+                    (document.getElementById('FormEditUserUsername') as HTMLInputElement).value = user.userID || '';
                     (document.getElementById('FormEditUserFirstName') as HTMLInputElement).value = user.firstName || '';
                     (document.getElementById('FormEditUserLastName') as HTMLInputElement).value = user.lastName || '';
-                    (document.getElementById('FormEditUserPassword') as HTMLInputElement).value = '';
+                    (document.getElementById('FormEditUserPassword') as HTMLInputElement).value = user.password || '';
 
                 });
 
@@ -183,7 +185,7 @@ export class UserManagemantPOM {
             });
         }
 
-        // PUT Methode to upadte user
+        // PUT Methode to update user
         const tableFormEditUserSubmit = document.getElementById('FormEditUserSubmit') as HTMLButtonElement;
 
         tableFormEditUserSubmit.addEventListener('click', async (event) => {

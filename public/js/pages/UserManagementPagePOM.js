@@ -34,6 +34,7 @@ export class UserManagemantPOM {
             });
             if (response.ok) {
                 var users = yield response.json();
+                // console.log(users);
                 users.forEach((user) => {
                     var rowTr = document.createElement("tr");
                     var cellUsername = document.createElement("td");
@@ -72,9 +73,10 @@ export class UserManagemantPOM {
                     tableItemEditButton === null || tableItemEditButton === void 0 ? void 0 : tableItemEditButton.addEventListener('click', () => {
                         currentEditUserId = user.userID;
                         console.log('Current User: ' + user.userID);
+                        document.getElementById('FormEditUserUsername').value = user.userID || '';
                         document.getElementById('FormEditUserFirstName').value = user.firstName || '';
                         document.getElementById('FormEditUserLastName').value = user.lastName || '';
-                        document.getElementById('FormEditUserPassword').value = '';
+                        document.getElementById('FormEditUserPassword').value = user.password || '';
                     });
                     // Delete User Button
                     tableItemDeleteButton === null || tableItemDeleteButton === void 0 ? void 0 : tableItemDeleteButton.addEventListener('click', (event) => __awaiter(this, void 0, void 0, function* () {
@@ -150,7 +152,7 @@ export class UserManagemantPOM {
                     passwordInput.value = "";
                 });
             }
-            // PUT Methode to upadte user
+            // PUT Methode to update user
             const tableFormEditUserSubmit = document.getElementById('FormEditUserSubmit');
             tableFormEditUserSubmit.addEventListener('click', (event) => __awaiter(this, void 0, void 0, function* () {
                 event.preventDefault();
